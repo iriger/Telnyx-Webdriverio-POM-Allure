@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": ".c-hfgiSY > :nth-child(3) > .c-PJLV"
+}
