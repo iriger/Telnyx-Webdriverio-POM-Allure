@@ -22,6 +22,21 @@ jobs:
           compose-file: "./docker-compose.yml"
         env:
           BASE_URL: ${{secrets.BASE_URL}}
+
+      - name: List directory contents after Docker run
+        run: ls -la
+
+      - name: Prepare report for GitHub Pages
+        run: |
+          mkdir -p public/allure-report
+          if [ -d "allure-report" ]; then
+            cp -r allure-report/* public/allure-report/
+          elif [ -d "/app/allure-report" ]; then
+            cp -r /app/allure-report/* public/allure-report/
+          else
+            echo "Warning: Allure report directory not found"
+            ls -la
+          fi  
          
       - name: Run tests and generate report in Docker
         env:
